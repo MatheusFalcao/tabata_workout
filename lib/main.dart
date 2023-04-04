@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tabata_workout/screens/homepage.dart';
-import 'package:tabata_workout/screens/second_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
         '/teste': (context) => const MyHomePage(
               title: 'teste',
             ),
-        '/secondScreen': (context) => const SecondScreen(),
+        // '/secondScreen': (context) => const SecondScreen(),
       },
     );
   }
