@@ -65,20 +65,16 @@ class _SecondScreenState extends State<SecondScreen> {
             _currentTime = widget.workTime;
             _isPreparing = false;
             _bg = Colors.lightBlueAccent;
-            print('debug 1');
           } else if (_isWorkTime) {
             // If we were in the work phase, switch to the rest phase
             // _currentExercise = 'Rest';
             _currentTime = widget.restTime;
             _isWorkTime = false;
             _bg = const Color.fromARGB(255, 54, 9, 214);
-            print('debug 2');
           } else {
             // If we were in the rest phase, switch to the next exercise
             List exercises = widget.exercises;
             int currentExerciseIndex = exercises.indexOf(_currentExercise);
-            print('debug 3 - exerciseIndex: $currentExerciseIndex');
-            print('debug 3 - exercise : $_currentExercise');
             if (currentExerciseIndex == exercises.length - 1) {
               // If we reached the last exercise, go back to the first exercise and increment the round
               _currentExercise = exercises[0].trim();
@@ -87,7 +83,6 @@ class _SecondScreenState extends State<SecondScreen> {
               _isPreparing = true;
               _currentRound++;
               _bg = Colors.lightBlueAccent;
-              print('debug 4');
               if (_currentRound > widget.rounds) {
                 print('ACABOU O ULTIMO ROUND');
                 Navigator.pop(context);
@@ -100,7 +95,6 @@ class _SecondScreenState extends State<SecondScreen> {
               _isWorkTime = true;
               _isPreparing = false;
               _bg = Colors.lightBlueAccent;
-              print('debug 5 - exercise : $_currentExercise');
             }
           }
         }
