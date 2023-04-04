@@ -30,6 +30,7 @@ class _SecondScreenState extends State<SecondScreen> {
   String _currentExercise = '';
   late Timer _timer;
   Color _bg = Colors.green;
+  bool _isPaused = false;
 
   @override
   void initState() {
@@ -50,12 +51,26 @@ class _SecondScreenState extends State<SecondScreen> {
     super.dispose();
   }
 
+  void _togglePause() {
+    setState(() {
+      _isPaused = !_isPaused;
+    });
+  }
+
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        if (_currentTime > 0) {
-          // If there is still time left, decrement the timer
+        if (!_isPaused) {
           _currentTime--;
+        }
+
+        if (_currentTime > 0) {
+          if (_currentTime < 5) {
+            _bg = Colors.red;
+          }
+          //
+          // If there is still time left, decrement the timer
+          // _currentTime--;
         } else {
           // If the current time is zero, switch to the next exercise/round
           if (_isPreparing) {
@@ -70,7 +85,7 @@ class _SecondScreenState extends State<SecondScreen> {
             // _currentExercise = 'Rest';
             _currentTime = widget.restTime;
             _isWorkTime = false;
-            _bg = const Color.fromARGB(255, 54, 9, 214);
+            _bg = const Color.fromARGB(255, 119, 88, 231);
           } else {
             // If we were in the rest phase, switch to the next exercise
             List exercises = widget.exercises;
@@ -127,7 +142,7 @@ class _SecondScreenState extends State<SecondScreen> {
                         ? _currentExercise
                         : 'Rest',
                 style: const TextStyle(
-                  fontSize: 36,
+                  fontSize: 80,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -135,9 +150,26 @@ class _SecondScreenState extends State<SecondScreen> {
               Text(
                 '$_currentTime',
                 style: const TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 275,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                          // bottomLeft
+                          offset: Offset(-1.5, -1.5),
+                          color: Colors.white),
+                      Shadow(
+                          // bottomRight
+                          offset: Offset(1.5, -1.5),
+                          color: Colors.white),
+                      Shadow(
+                          // topRight
+                          offset: Offset(1.5, 1.5),
+                          color: Colors.white),
+                      Shadow(
+                          // topLeft
+                          offset: Offset(-1.5, 1.5),
+                          color: Colors.white),
+                    ]),
               ),
               const SizedBox(height: 16),
               Row(
@@ -170,6 +202,14 @@ class _SecondScreenState extends State<SecondScreen> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _togglePause();
+        },
+        backgroundColor: Colors.blue,
+        child:
+            _isPaused ? const Icon(Icons.play_arrow) : const Icon(Icons.pause),
       ),
     );
   }
