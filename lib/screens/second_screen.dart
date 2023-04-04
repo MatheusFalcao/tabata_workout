@@ -28,6 +28,8 @@ class _SecondScreenState extends State<SecondScreen> {
   bool _isPreparing = true;
   int _currentTime = 0;
   String _currentExercise = '';
+  String _nextExercise = '';
+
   late Timer _timer;
   Color _bg = Colors.green;
   bool _isPaused = false;
@@ -40,7 +42,7 @@ class _SecondScreenState extends State<SecondScreen> {
     List exercises = widget.exercises;
     _currentExercise = exercises[0].trim();
     _currentTime = widget.prepareTime;
-
+    _nextExercise = exercises[1].trim();
     // Start the timer
     _startTimer();
   }
@@ -106,6 +108,7 @@ class _SecondScreenState extends State<SecondScreen> {
             } else {
               // Otherwise, switch to the next exercise
               _currentExercise = exercises[currentExerciseIndex + 1].trim();
+              _nextExercise = exercises[currentExerciseIndex + 2].trim();
               _currentTime = widget.workTime;
               _isWorkTime = true;
               _isPreparing = false;
@@ -142,7 +145,7 @@ class _SecondScreenState extends State<SecondScreen> {
                         ? _currentExercise
                         : 'Rest',
                 style: const TextStyle(
-                  fontSize: 80,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -150,7 +153,7 @@ class _SecondScreenState extends State<SecondScreen> {
               Text(
                 '$_currentTime',
                 style: const TextStyle(
-                    fontSize: 275,
+                    fontSize: 230,
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
@@ -170,6 +173,18 @@ class _SecondScreenState extends State<SecondScreen> {
                           offset: Offset(-1.5, 1.5),
                           color: Colors.white),
                     ]),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                _isPreparing
+                    ? _currentExercise
+                    : _isWorkTime
+                        ? 'Rest'
+                        : _nextExercise,
+                style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 16),
               Row(
