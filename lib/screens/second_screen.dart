@@ -133,11 +133,97 @@ class _SecondScreenState extends State<SecondScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.sports_gymnastics,
+                          color: Colors.white,
+                        ),
+                        const Text(
+                          'Work',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          '${widget.workTime}s',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.timer,
+                          color: Colors.white,
+                        ),
+                        const Text(
+                          'Rest',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          '${widget.restTime}s',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.repeat_one,
+                          color: Colors.white,
+                        ),
+                        const Text(
+                          'Rounds',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          '${widget.rounds}s',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               Text(
                 'Round $_currentRound',
-                style: const TextStyle(fontSize: 24),
+                style: const TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
               Text(
                 _isPreparing
                     ? 'Preparar'
@@ -149,11 +235,11 @@ class _SecondScreenState extends State<SecondScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
               Text(
                 '$_currentTime',
                 style: const TextStyle(
-                    fontSize: 230,
+                    fontSize: 200,
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
@@ -174,7 +260,7 @@ class _SecondScreenState extends State<SecondScreen> {
                           color: Colors.white),
                     ]),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
               Text(
                 _isPreparing
                     ? _currentExercise
@@ -187,33 +273,25 @@ class _SecondScreenState extends State<SecondScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Work: ${widget.workTime}s ',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                  Text(
-                    'Rest: ${widget.restTime}s ',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                  Text(
-                    'Rounds: ${widget.rounds}',
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(fontSize: 18),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: ElevatedButton(
+              //         style: ElevatedButton.styleFrom(
+              //           backgroundColor: Colors.red,
+              //           padding: const EdgeInsets.all(20),
+              //         ),
+              //         child: const Text(
+              //           'Cancel',
+              //           style: TextStyle(fontSize: 18),
+              //         ),
+              //         onPressed: () {
+              //           Navigator.pop(context);
+              //         },
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
