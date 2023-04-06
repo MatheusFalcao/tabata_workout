@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class SecondScreen extends StatefulWidget {
   final int rounds;
@@ -31,6 +32,7 @@ class _SecondScreenState extends State<SecondScreen> {
   String _nextExercise = '';
   int _exerciseIndex = 0;
   int _exerciseTotal = 0;
+  double _percent = 1.0;
 
   late Timer _timer;
   Color _bg = Colors.green;
@@ -69,6 +71,16 @@ class _SecondScreenState extends State<SecondScreen> {
           _currentTime--;
         }
 
+        if (_isPreparing) {
+          _percent = (_currentTime * 100 / widget.prepareTime) / 100;
+        } else if (_isWorkTime) {
+          _percent = (_currentTime * 100 / widget.workTime) / 100;
+        } else {
+          _percent = (_currentTime * 100 / widget.restTime) / 100;
+        }
+
+        print(_percent);
+
         if (_currentTime > 0) {
           if (_currentTime < 5) {
             _bg = Colors.red;
@@ -77,6 +89,7 @@ class _SecondScreenState extends State<SecondScreen> {
           // If there is still time left, decrement the timer
           // _currentTime--;
         } else {
+          _percent = 1.0;
           // If the current time is zero, switch to the next exercise/round
           if (_isPreparing) {
             // If we were in the preparation phase, switch to the first exercise
@@ -255,30 +268,41 @@ class _SecondScreenState extends State<SecondScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              Text(
-                '$_currentTime',
-                style: const TextStyle(
-                    fontSize: 200,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                          // bottomLeft
-                          offset: Offset(-1.5, -1.5),
-                          color: Colors.white),
-                      Shadow(
-                          // bottomRight
-                          offset: Offset(1.5, -1.5),
-                          color: Colors.white),
-                      Shadow(
-                          // topRight
-                          offset: Offset(1.5, 1.5),
-                          color: Colors.white),
-                      Shadow(
-                          // topLeft
-                          offset: Offset(-1.5, 1.5),
-                          color: Colors.white),
-                    ]),
+              CircularPercentIndicator(
+                radius: 180,
+                lineWidth: 30,
+                percent: _percent,
+                progressColor: Colors.white,
+                backgroundColor: Colors.white70,
+                circularStrokeCap: CircularStrokeCap.round,
+                animation: true,
+                animateFromLastPercent: true,
+                center: Text(
+                  '$_currentTime',
+                  style: const TextStyle(
+                      fontSize: 180,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                            // bottomLeft
+                            offset: Offset(-1.5, -1.5),
+                            color: Colors.white),
+                        Shadow(
+                            // bottomRight
+                            offset: Offset(1.5, -1.5),
+                            color: Colors.white),
+                        Shadow(
+                            // topRight
+                            offset: Offset(1.5, 1.5),
+                            color: Colors.white),
+                        Shadow(
+                            // topLeft
+                            offset: Offset(-1.5, 1.5),
+                            color: Colors.white),
+                      ]),
+                ),
               ),
+
               const SizedBox(height: 12),
               Text(
                 _isPreparing
