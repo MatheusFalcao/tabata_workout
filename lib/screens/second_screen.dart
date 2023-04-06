@@ -29,6 +29,8 @@ class _SecondScreenState extends State<SecondScreen> {
   int _currentTime = 0;
   String _currentExercise = '';
   String _nextExercise = '';
+  int _exerciseIndex = 0;
+  int _exerciseTotal = 0;
 
   late Timer _timer;
   Color _bg = Colors.green;
@@ -43,6 +45,7 @@ class _SecondScreenState extends State<SecondScreen> {
     _currentExercise = exercises[0].trim();
     _currentTime = widget.prepareTime;
     _nextExercise = exercises[1].trim();
+    _exerciseTotal = exercises.length;
     // Start the timer
     _startTimer();
   }
@@ -82,6 +85,7 @@ class _SecondScreenState extends State<SecondScreen> {
             _currentTime = widget.workTime;
             _isPreparing = false;
             _bg = Colors.lightBlueAccent;
+            _exerciseIndex++;
           } else if (_isWorkTime) {
             // If we were in the work phase, switch to the rest phase
             // _currentExercise = 'Rest';
@@ -92,6 +96,9 @@ class _SecondScreenState extends State<SecondScreen> {
             // If we were in the rest phase, switch to the next exercise
             List exercises = widget.exercises;
             int currentExerciseIndex = exercises.indexOf(_currentExercise);
+
+            print("DEBUG: currentExerciseIndex: $currentExerciseIndex");
+            print("DEBUG: _exerciseTotal: $_exerciseTotal");
             if (currentExerciseIndex == exercises.length - 1) {
               // If we reached the last exercise, go back to the first exercise and increment the round
               _currentExercise = exercises[0].trim();
@@ -100,6 +107,8 @@ class _SecondScreenState extends State<SecondScreen> {
               _isPreparing = true;
               _currentRound++;
               _bg = Colors.lightBlueAccent;
+              _exerciseIndex = 0;
+              _nextExercise = 'Done!';
               if (_currentRound > widget.rounds) {
                 print('ACABOU O ULTIMO ROUND');
                 Navigator.pop(context);
@@ -108,10 +117,17 @@ class _SecondScreenState extends State<SecondScreen> {
             } else {
               // Otherwise, switch to the next exercise
               _currentExercise = exercises[currentExerciseIndex + 1].trim();
-              _nextExercise = exercises[currentExerciseIndex + 2].trim();
+              if (_exerciseIndex + 1 == _exerciseTotal) {
+                _nextExercise = 'Done';
+              } else {
+                _nextExercise = exercises[currentExerciseIndex + 2].trim();
+              }
+
+              print("DEBUG: _exerciseIndex: $_exerciseIndex");
               _currentTime = widget.workTime;
               _isWorkTime = true;
               _isPreparing = false;
+              _exerciseIndex++;
               _bg = Colors.lightBlueAccent;
             }
           }
@@ -131,12 +147,12 @@ class _SecondScreenState extends State<SecondScreen> {
         color: _bg,
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(22.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -205,7 +221,7 @@ class _SecondScreenState extends State<SecondScreen> {
                           ),
                         ),
                         Text(
-                          '${widget.rounds}s',
+                          '${widget.rounds}',
                           style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
@@ -216,8 +232,11 @@ class _SecondScreenState extends State<SecondScreen> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 12,
+              ),
               Text(
-                'Round $_currentRound',
+                'Exercicio $_exerciseIndex / $_exerciseTotal',
                 style: const TextStyle(
                   fontSize: 24,
                   color: Colors.white,
