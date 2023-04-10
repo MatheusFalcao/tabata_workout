@@ -79,8 +79,6 @@ class _SecondScreenState extends State<SecondScreen> {
           _percent = (_currentTime * 100 / widget.restTime) / 100;
         }
 
-        print(_percent);
-
         if (_currentTime > 0) {
           if (_currentTime < 5) {
             _bg = Colors.red;
@@ -272,7 +270,8 @@ class _SecondScreenState extends State<SecondScreen> {
                 radius: 180,
                 lineWidth: 30,
                 percent: _percent,
-                progressColor: Colors.white,
+                progressColor:
+                    _currentTime > 5 ? Colors.green[300] : Colors.red[300],
                 backgroundColor: Colors.white70,
                 circularStrokeCap: CircularStrokeCap.round,
                 animation: true,

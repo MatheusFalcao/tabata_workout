@@ -8,15 +8,31 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue[100],
-      height: 40,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Text(title),
-          ],
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        //color: Colors.white24,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(5),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(index.toString()),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Text(title),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

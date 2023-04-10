@@ -29,208 +29,183 @@ class _HomePageScreenState extends State<HomePageScreen> {
         title: Text(widget.title),
       ),
       body: SafeArea(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
-        children: [
-          const SizedBox(
-            height: 25,
-          ),
-          const Text(
-            'Olá,',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-            ),
-          ),
-          const Text(
-            'Como vai ser o treino hoje?',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 22,
-            ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    controller: workController,
-                    decoration: const InputDecoration(
-                        hintText: '60',
-                        suffix: Text('seg'),
-                        prefixIcon: Icon(Icons.timer),
-                        labelText: 'Work',
-                        border: OutlineInputBorder()),
+            children: [
+              const SizedBox(
+                height: 25,
+              ),
+              const Text(
+                'Olá, 😄',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ),
+              const Text(
+                'Como vai ser o treino hoje? 💪',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: workController,
+                      decoration: const InputDecoration(
+                          hintText: '60',
+                          suffix: Text('seg'),
+                          prefixIcon: Icon(Icons.timer),
+                          labelText: 'Work',
+                          border: OutlineInputBorder()),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 25,
-                ),
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    controller: restController,
-                    decoration: const InputDecoration(
-                        hintText: '15',
-                        suffix: Text('seg'),
-                        prefixIcon: Icon(Icons.timer),
-                        labelText: 'Descanço',
-                        border: OutlineInputBorder()),
+                  const SizedBox(
+                    width: 25,
                   ),
-                ),
-                // ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.pushNamed(context, '/teste');
-                //     },
-                //     child: const Text('teste de nav')
-                // )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    controller: roundsController,
-                    decoration: const InputDecoration(
-                        hintText: '3',
-                        prefixIcon: Icon(Icons.repeat_one),
-                        labelText: 'Rounds',
-                        border: OutlineInputBorder()),
+                  Expanded(
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: restController,
+                      decoration: const InputDecoration(
+                          hintText: '15',
+                          suffix: Text('seg'),
+                          prefixIcon: Icon(Icons.timer),
+                          labelText: 'Descanço',
+                          border: OutlineInputBorder()),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 25,
-                ),
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    controller: prepareController,
-                    decoration: const InputDecoration(
-                        hintText: '10',
-                        suffix: Text('seg'),
-                        prefixIcon: Icon(Icons.timer),
-                        labelText: 'Preparaçao',
-                        border: OutlineInputBorder()),
+                ],
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: roundsController,
+                      decoration: const InputDecoration(
+                          hintText: '3',
+                          prefixIcon: Icon(Icons.repeat_one),
+                          labelText: 'Rounds',
+                          border: OutlineInputBorder()),
+                    ),
                   ),
-                ),
-                // Expanded(
-                //   child: TextField(
-                //     decoration: InputDecoration(
-                //         hintText: '15',
-                //         prefixIcon: Icon(Icons.sports_gymnastics_outlined),
-                //         labelText: 'Quantidade de Exercicíos',
-                //         border: OutlineInputBorder()),
-                //   ),
-                // ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                    flex: 2,
-                    child: Column(
-                      children: [
-                        const Text(
-                          'Exercicios',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        Row(
+                  const SizedBox(
+                    width: 25,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: prepareController,
+                      decoration: const InputDecoration(
+                          hintText: '10',
+                          prefixIcon: Icon(Icons.timer),
+                          labelText: 'Preparaçao',
+                          border: OutlineInputBorder()),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                        flex: 2,
+                        child: Column(
                           children: [
-                            Expanded(
-                                child: TextField(
-                              controller: exerciseController,
-                              decoration: const InputDecoration(
-                                labelText: 'Nome do Exercicío',
-                                border: OutlineInputBorder(),
+                            const Text(
+                              'Exercicios',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
                               ),
-                            )),
-                            const SizedBox(
-                              width: 25,
                             ),
-                            ElevatedButton(
-                              onPressed: () {
-                                String text = exerciseController.text;
-                                setState(() {
-                                  exercises.add(text);
-                                });
-                                exerciseController.clear();
-                                // Navigator.pushNamed(context, '/secondScreen');
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  padding: const EdgeInsets.all(20)),
-                              child: const Icon(Icons.add),
-                            )
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Flexible(
-                            child: ListView(
-                              shrinkWrap: true,
+                            const SizedBox(
+                              height: 25,
+                            ),
+                            Row(
                               children: [
-                                for (String exercise in exercises)
-                                  ListItem(title: exercise.toString()),
+                                Expanded(
+                                    child: TextField(
+                                  controller: exerciseController,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Nome do Exercicío',
+                                    border: OutlineInputBorder(),
+                                  ),
+                                )),
+                                const SizedBox(
+                                  width: 25,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    String text = exerciseController.text;
+                                    setState(() {
+                                      exercises.add(text);
+                                    });
+                                    exerciseController.clear();
+                                    // Navigator.pushNamed(context, '/secondScreen');
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.all(20)),
+                                  child: const Icon(Icons.add),
+                                )
                               ],
                             ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => SecondScreen(
-                                      rounds: int.parse(roundsController.text),
-                                      prepareTime:
-                                          int.parse(prepareController.text),
-                                      workTime: int.parse(workController.text),
-                                      restTime: int.parse(restController.text),
-                                      exercises: exercises,
-                                    ),
-                                  ));
-                                  // Navigator.pushNamed(
-                                  //   context,
-                                  //   '/secondScreen',
-                                  //   arguments: SecondScreen(
-                                  //     rounds: roundsController.text,
-                                  //   ),
-                                  // );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.all(20)),
-                                child: const Text(
-                                  "Começar",
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Flexible(
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  children: [
+                                    for (var i = 0; i < exercises.length; i++)
+                                      ListItem(
+                                        title: exercises[i].toString(),
+                                        index: i + 1,
+                                      ),
+                                    // exercises.asMap().forEach(
+                                    //       (index, value) =>
+                                    //           ListItem(title: value.toString()),
+                                    //     ),
+                                  ],
                                 ),
                               ),
                             ),
                           ],
-                        ),
-                      ],
-                    )),
-              ],
-            ),
+                        )),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       )),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => SecondScreen(
+                rounds: int.parse(roundsController.text),
+                prepareTime: int.parse(prepareController.text),
+                workTime: int.parse(workController.text),
+                restTime: int.parse(restController.text),
+                exercises: exercises,
+              ),
+            ));
+          },
+          backgroundColor: Colors.green,
+          child: const Icon(Icons.play_arrow)),
     );
   }
 }
