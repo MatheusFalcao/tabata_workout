@@ -1,16 +1,29 @@
-# tabata_workout
+# Tabata Workout App
 
-A new Flutter project.
+Projeto criado em Flutter como forma de Aprendizado.
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+![alt text](https://github.com/MatheusFalcao/tabata_workout/blob/main/Assets/app_screenshots/banner-github-removebg-preview.png?raw=true)
 
-A few resources to get you started if this is your first Flutter project:
+## Dependencies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+[Percent Indicator](https://pub.dev/packages/percent_indicator)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+
+```shell
+git clone https://github.com/MatheusFalcao/tabata_workout.git tabata_app
+```
+
+```shell
+cd tabata_app
+```
+
+```shell
+flutter pub get
+```
+
+```shell
+flutter start
+```
